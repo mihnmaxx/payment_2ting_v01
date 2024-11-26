@@ -22,22 +22,23 @@ Hệ thống tích hợp thanh toán PayOS cho phần mềm bán hàng 2Ting, t�
 
 1. Tạo môi trường ảo:
 
-
+```
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
-
+```
 
 2. Cài đặt các thư viện:
 
-
+```
 pip install -r requirements.txt
-
+```
 
 3. Cấu hình môi trường:
 
-
+```
 cp .env.example .env
+```
 
 # Chỉnh sửa các thông số trong file .env
 
@@ -49,28 +50,27 @@ Các thông số cấu hình trong file `.env`:
 
 # PayOS
 
+```
 PAYOS_CLIENT_ID=your_client_id
-
 PAYOS_API_KEY=your_api_key
-
 PAYOS_CHECKSUM_KEY=your_checksum_key
+```
 
 # Database
 
+```
 DB_HOST=localhost
-
 DB_PORT=3050
-
 DB_NAME=database.fdb
-
 DB_USER=SYSDBA
-
 DB_PASSWORD=masterkey
+```
 
 # Printer
 
+```
 PRINTER_NAME=POS-58
-
+```
 
 ## Chạy ứng dụng
 
@@ -78,32 +78,32 @@ PRINTER_NAME=POS-58
 
 Chạy migrations:
 
-
+```
 python manage.py migrate
-
+```
 
 1. Khởi động webhook server:
 
-
+```
 python manage.py runserver
-
+```
 
 2. Khởi động ngrok (development):
 
-
+```
 ngrok http 8000
-
+```
 
 3. Khởi động listener Firebird:
 
-
+```
 python manage.py listen_firebird
+```
 
 # Cách khởi chạy tự động ( Đối với window)
 
 • Khởi động toàn bộ hệ thống:
-```
-bash
+```Bash
 start_payment.bat
 ```
 Script này sẽ tự động:
@@ -123,6 +123,7 @@ Hệ thống sẽ tự động khởi động và cấu hình mỗi khi khởi �
 
 ## Cấu trúc project
 
+```
 payment_listener/
 ├── orders/                # App xử lý đơn hàng
 │   ├── management/        # Custom commands
@@ -132,6 +133,7 @@ payment_listener/
 │   └── views.py          # Webhook handler
 ├── payment_listener/      # Project settings
 └── manage.py
+```
 
 ## Tạo file .env
 
@@ -140,54 +142,52 @@ Tạo file `.env` trong thư mục gốc với nội dung:
 
 # Django Configuration
 
+```
 SECRET_KEY=your_django_secret_key
-
 DEBUG=True
-
 ALLOWED_HOSTS=localhost,127.0.0.1, your_ngork_url
+```
 
 # Database Configuration
 
+```
 FIREBIRD_HOST=localhost
-
 FIREBIRD_DATABASE=/tmp/Database_Phan_Mem_Ban_Hang.FDB
-
 FIREBIRD_USER=SYSDBA
-
 FIREBIRD_PASSWORD=masterkey
-
 FIREBIRD_TABLE=TDONHANG
-
 FIREBIRD_PAYMENT_TYPE=PAYOS
 
-
 FIREBIRD_TABLE_NAME=TDONHANG
+```
 
 # PayOS Configuration
 
+```
 PAYOS_CLIENT_ID=your_payos_client_id
-
 PAYOS_API_KEY=your_payos_api_key
-
 PAYOS_CHECKSUM_KEY=your_payos_checksum_key
-
+```
 
 # POS Printer Configuration
 
+```
 POS_PRINTER_VENDOR_ID=0x0483
-
 POS_PRINTER_PRODUCT_ID=0x5743
+```
 
 # Voice Configuration
 
+```
 VOICE_RATE=150
-
 VOICE_VOLUME=1.0
-
 VOICE_VOICE=vietnamese
+```
+# Ngrok info
 
-
+```
 NGORK_URL=your_ngork_url
+```
 
 ## Quy trình hoạt động
 
