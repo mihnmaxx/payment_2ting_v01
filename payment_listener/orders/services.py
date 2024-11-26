@@ -131,7 +131,7 @@ class FirebirdListener:
         self.payos_service = PayOSService()
         self.table_name = settings.FIREBIRD_CONFIG['table_name']
         self.payment_type = settings.FIREBIRD_CONFIG['payment_type']
-        
+
     def listen(self):
         while True:
             cursor = self.conn.cursor()
@@ -189,7 +189,7 @@ class FirebirdListener:
                     cursor.execute(update_query, (order_id,))
                     self.conn.commit()
             
-            time.sleep(5)
+            time.sleep(1)
     def speak_payment_received(self, amount):
         try:
             self.engine.setProperty('rate', settings.VOICE_CONFIG['rate'])
