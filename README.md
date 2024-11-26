@@ -48,22 +48,33 @@ Các thông số cấu hình trong file `.env`:
 
 
 # PayOS
+
 PAYOS_CLIENT_ID=your_client_id
+
 PAYOS_API_KEY=your_api_key
+
 PAYOS_CHECKSUM_KEY=your_checksum_key
 
 # Database
+
 DB_HOST=localhost
+
 DB_PORT=3050
+
 DB_NAME=database.fdb
+
 DB_USER=SYSDBA
+
 DB_PASSWORD=masterkey
 
 # Printer
+
 PRINTER_NAME=POS-58
 
 
 ## Chạy ứng dụng
+
+# Cách thông thường
 
 Chạy migrations:
 
@@ -88,6 +99,27 @@ ngrok http 8000
 
 python manage.py listen_firebird
 
+# Cách khởi chạy tự động ( Đối với window)
+
+• Khởi động toàn bộ hệ thống:
+```
+bash
+start_payment.bat
+```
+Script này sẽ tự động:
+Kích hoạt môi trường ảo (venv)
+Khởi động Django server
+Khởi động Firebird listener
+Khởi động Ngrok tunnel
+Tự động cập nhật URL Ngrok vào file .env
+
+• Để tự động khởi động cùng Windows:
+
+- Tạo shortcut cho file start_payment.bat
+- Nhấn Win + R, gõ "shell:startup"
+- Copy shortcut vào thư mục Startup
+
+Hệ thống sẽ tự động khởi động và cấu hình mỗi khi khởi động Windows.
 
 ## Cấu trúc project
 
@@ -107,36 +139,55 @@ Tạo file `.env` trong thư mục gốc với nội dung:
 
 
 # Django Configuration
+
 SECRET_KEY=your_django_secret_key
+
 DEBUG=True
+
 ALLOWED_HOSTS=localhost,127.0.0.1, your_ngork_url
 
 # Database Configuration
+
 FIREBIRD_HOST=localhost
+
 FIREBIRD_DATABASE=/tmp/Database_Phan_Mem_Ban_Hang.FDB
+
 FIREBIRD_USER=SYSDBA
+
 FIREBIRD_PASSWORD=masterkey
+
 FIREBIRD_TABLE=TDONHANG
+
 FIREBIRD_PAYMENT_TYPE=PAYOS
+
 
 FIREBIRD_TABLE_NAME=TDONHANG
 
 # PayOS Configuration
+
 PAYOS_CLIENT_ID=your_payos_client_id
+
 PAYOS_API_KEY=your_payos_api_key
+
 PAYOS_CHECKSUM_KEY=your_payos_checksum_key
 
+
 # POS Printer Configuration
+
 POS_PRINTER_VENDOR_ID=0x0483
+
 POS_PRINTER_PRODUCT_ID=0x5743
 
 # Voice Configuration
+
 VOICE_RATE=150
+
 VOICE_VOLUME=1.0
+
 VOICE_VOICE=vietnamese
 
-NGORK_URL=your_ngork_url
 
+NGORK_URL=your_ngork_url
 
 ## Quy trình hoạt động
 
